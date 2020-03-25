@@ -3,8 +3,16 @@ import Logo from '../../../assets/img/logo.png';
 
 import './MenuTop.scss';
 import { Button, Icon } from 'antd';
+import { logout } from '../../../api/auth';
+import { Redirect } from 'react-router-dom';
+
 export default function MenuTop(props) {
   const { menuCollapsed, setMenuCollapsed } = props;
+
+  const logoutUser = () => {
+    logout();
+    window.location.reload();
+  };
 
   return (
     <div className="menuTop">
@@ -15,7 +23,7 @@ export default function MenuTop(props) {
         </Button>
       </div>
       <div className="menuTopRight">
-        <Button type="link">
+        <Button type="link" onClick={logoutUser}>
           <Icon type="poweroff" />
         </Button>
       </div>

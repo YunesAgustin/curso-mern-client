@@ -1,4 +1,6 @@
 // Aca van todas las funciones para conectar con los end points de los usuarios
+// Cuando uso fetch le hago la peticion para conectar con el server
+// mandandole la url y los parametros de la misma
 
 import { basePath, apiVersion } from './config';
 
@@ -35,6 +37,52 @@ export function signInApi(data) {
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json'
+    }
+  };
+
+  return fetch(url, params)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result;
+    })
+    .catch(err => {
+      return err.message;
+    });
+}
+
+export function getUsersApi(token) {
+  const url = `${basePath}/${apiVersion}/users`;
+
+  const params = {
+    method: 'GET', // Si no se pone nada toma como defecto GET
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token
+    }
+  };
+
+  return fetch(url, params)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result;
+    })
+    .catch(err => {
+      return err.message;
+    });
+}
+
+export function getUsersActiveApi(token, status) {
+  const url = `${basePath}/${apiVersion}/users-active?active=${status}`;
+
+  const params = {
+    method: 'GET', // Si no se pone nada toma como defecto GET
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token
     }
   };
 
