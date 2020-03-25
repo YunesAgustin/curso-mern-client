@@ -1,0 +1,81 @@
+@import '../../../scss/index.scss';
+
+.signIn {
+  background-image: url('../../../assets//img/background.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  &Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; // Para que ocupe la pantalla como min 100 x 100
+
+    &Logo {
+      padding: 60px 20px;
+      img {
+        width: 100%;
+      }
+    }
+
+    &Tabs {
+      background-color: $backgroundLight;
+      .ant-tabs {
+        width: 90vw;
+
+        @media (min-width: $mediaBreakPointUpLg) {
+          // Es para hacer responsiive, q en el cel ocupe toda la pantalla
+          width: auto;
+        }
+      }
+      .ant-tabs-nav-container {
+        height: 60px !important;
+      }
+      .ant-tabs-nav {
+        width: 100%;
+      }
+
+      .ant-tabs-tab {
+        width: 50%;
+        height: 60px !important;
+        text-align: center;
+        font-size: 0em +19px / $defaultFontSize; // Resposive que se acomode al tamaño de pantalla la letra
+        border-top: 4px solid $borderGrey !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        @media (min-width: $mediaBreakPointUpLg) {
+          width: 220px;
+          font-size: 0em +23px / $defaultFontSize;
+        }
+
+        &:hover {
+          // Cuando paso por encima del boton  en el navegador???
+          color: $fontGreyDark;
+        }
+        &:before {
+          content: none;
+        }
+        span {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .ant-tabs-tab-active {
+        color: $primaryColor !important;
+        border-top: 4px solid $primaryColor !important;
+        border-radius: 0 !important;
+        border-right: o !important;
+        border-left: 0 !important;
+      }
+
+      .ant-tabs-content {
+        padding: 0 16px 16px 16px;
+        text-align: center;
+      }
+    }
+  }
+}

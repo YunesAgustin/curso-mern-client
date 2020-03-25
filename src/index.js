@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'antd/dist/antd.css'; // se importa antes del index css para poder recibir cosas de aca
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';

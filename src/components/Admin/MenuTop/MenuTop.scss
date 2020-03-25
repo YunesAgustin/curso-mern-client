@@ -1,0 +1,30 @@
+@import '../../../scss/index.scss';
+
+.menuTop {
+  display: flex;
+
+  button {
+    color: $fontLight;
+
+    &:hover {
+      color: $primaryColor;
+    }
+
+    &:focus,
+    &:active {
+      color: $fontLight;
+    }
+  }
+
+  &Left {
+    &Logo {
+      width: 200px;
+      padding: 0 10px;
+    }
+  }
+
+  &Right {
+    position: absolute;
+    right: 0; // Para que se posicione a la derecha
+  }
+}

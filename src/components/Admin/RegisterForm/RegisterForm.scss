@@ -1,0 +1,53 @@
+@import '../../../scss/index.scss';
+
+.register-form {
+  text-align: left;
+
+  .ant-form-item {
+    &:nth-child(3),
+    &:last-of-type {
+      // Para indicar que es el tercero y el ultimo de los .ant-form-item que vienen dados por la libreria (se lo puede ver con insepccionar)
+      margin: 0;
+    }
+  }
+
+  &__input {
+    .ant-input-prefix {
+      // El icono
+      i {
+        font-size: 0em + 22px / $defaultFontSize;
+      }
+    }
+
+    input {
+      font-size: 0em + 22px / $defaultFontSize;
+      padding: 20px 20px 20px 40px !important;
+      &:focus {
+        border-color: $primaryColor;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__button {
+    width: 100%;
+    font-size: 0em +22px / $defaultFontSize;
+    background-color: $primaryColor;
+    color: $fontLight; // Color del texto
+    height: 42px;
+
+    &:hover {
+      // Cuando estas encima de boton
+      background-color: $primaryColorHover;
+      color: $fontLight; // Para que el texto siga en blanco
+    }
+
+    &:focus,
+    &:active {
+      // Cuando sea focus o active...
+      background-color: $primaryColor;
+      color: $fontLight;
+      border: 0;
+    }
+  }
+}
