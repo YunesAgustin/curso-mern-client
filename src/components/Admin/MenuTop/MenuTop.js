@@ -4,7 +4,6 @@ import Logo from '../../../assets/img/logo.png';
 import './MenuTop.scss';
 import { Button, Icon } from 'antd';
 import { logout } from '../../../api/auth';
-import { Redirect } from 'react-router-dom';
 
 export default function MenuTop(props) {
   const { menuCollapsed, setMenuCollapsed } = props;
