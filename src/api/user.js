@@ -147,7 +147,7 @@ export function updateUserApi(token, user, userId) {
       'Content-Type': 'application/json',
       Authorization: token
     },
-    body: JSON.stringify(user)
+    body: JSON.stringify(user) // Le tengo que pasar un objeto
   };
 
   return fetch(url, params)
@@ -156,6 +156,79 @@ export function updateUserApi(token, user, userId) {
     })
     .then(result => {
       return result;
+    })
+    .catch(err => {
+      return err.message;
+    });
+}
+
+export function activateUserApi(token, userId, status) {
+  const url = `${basePath}/${apiVersion}/activate-user/${userId}`;
+
+  const params = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token
+    },
+    body: JSON.stringify({
+      active: status
+    })
+  };
+
+  return fetch(url, params)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      console.log(result);
+      return result.message;
+    })
+    .catch(err => {
+      return err.message;
+    });
+}
+
+export function deleteUserApi(token, userId) {
+  const url = `${basePath}/${apiVersion}/delete-user/${userId}`;
+
+  const params = {
+    method: 'DELETE',
+    headers: {
+      Authorization: token
+    }
+  };
+
+  return fetch(url, params)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result.message;
+    })
+    .catch(err => {
+      return err.message;
+    });
+}
+
+export function signUpAdminApi(token, user) {
+  const url = `${basePath}/${apiVersion}/sign-up-admin`;
+
+  const params = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token
+    },
+    body: JSON.stringify(user)
+  };
+
+  return fetch(url, params)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result.message;
     })
     .catch(err => {
       return err.message;
