@@ -1,0 +1,31 @@
+@import '../../../scss/index.scss';
+
+.menu-top {
+  position: sticky; // Para mantener el menu fijo aunque haga scroll
+  top: 0;
+  background-color: $backgroundDarkWeb;
+  border: 0;
+  display: flex;
+  align-items: center;
+
+  li {
+    border: 0 !important;
+
+    a {
+      color: #fff !important;
+      font-weight: bold;
+
+      &:hover {
+        color: $primaryColor !important;
+      }
+    }
+  }
+
+  &__logo {
+    padding: 10px;
+
+    img {
+      width: 200px;
+    }
+  }
+}
