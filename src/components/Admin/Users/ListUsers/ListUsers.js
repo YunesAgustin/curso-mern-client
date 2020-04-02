@@ -206,7 +206,7 @@ function UserInactive(props) {
     } else {
       setAvatar(null);
     }
-  });
+  }, [user]);
 
   const activateUser = () => {
     const token = getAccessTokenApi();

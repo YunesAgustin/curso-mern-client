@@ -1,0 +1,19 @@
+@import '../../../../scss/index.scss';
+
+.my-info {
+  img {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    margin-bottom: 20px;
+    color: $primaryColorDark;
+  }
+
+  .social-links {
+    // Referencio a la clase creada en este componente y le cambio el estilo
+    // pero para que se aplque solo cuando lo llamos desde aca
+    justify-content: flex-start;
+  }
+}

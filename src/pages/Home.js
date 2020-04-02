@@ -1,9 +1,13 @@
 import React from 'react';
-
+import MainBanner from '../components/Web/MainBanner';
+import HomeCourses from '../components/Web/HomeCourses';
+import HomeMyCoursesWork from '../components/Web/HowMyCoursesWork';
 export default function Home() {
   return (
-    <div>
-      <h1>Estamos en Homee dmtii</h1>
-    </div>
+    <>
+      <MainBanner />
+      <HomeCourses />
+      <HomeMyCoursesWork />
+    </>
   );
 }

@@ -15,7 +15,6 @@ import AddMenuWebForm from '../AddMenuWebForm';
 import EditMenuWebForm from '../EditMenuWebForm';
 
 import './MenuWebList.scss';
-const { confirm } = ModalAntd;
 
 export default function MenuWebList(props) {
   const { menu, setReloadMenuWeb } = props;
@@ -35,12 +34,13 @@ export default function MenuWebList(props) {
             item={item}
             activateMenu={activateMenu}
             editMenuWebModal={editMenuWebModal}
-            deleteMenu={deleteMenu}
+            setReloadMenuWeb={setReloadMenuWeb}
           />
         )
       });
     });
     setListItems(listItemsArray);
+    // eslint-disable-next-line
   }, [menu]);
 
   const activateMenu = (menu, status) => {
@@ -85,20 +85,6 @@ export default function MenuWebList(props) {
     );
   };
 
-  const deleteMenu = menu => {
-    const token = getAccessTokenApi();
-    const menuId = menu._id;
-
-    updateMenuApi(token, menuId, { deleteLogic: true })
-      .then(response => {
-        notification['success']({ message: response });
-        setReloadMenuWeb(true);
-      })
-      .catch(() => {
-        ['error']({ message: 'Error del servidor' });
-      });
-  };
-
   return (
     <div className="menu-web-list">
       <div className="menu-web-list__header">
@@ -123,7 +109,7 @@ export default function MenuWebList(props) {
 }
 
 function MenuItem(props) {
-  const { item, activateMenu, editMenuWebModal, deleteMenu } = props;
+  const { item, activateMenu, editMenuWebModal, setReloadMenuWeb } = props;
 
   return (
     <List.Item
@@ -135,7 +121,10 @@ function MenuItem(props) {
         <Button type="primary" onClick={() => editMenuWebModal(item)}>
           <Icon type="edit" />
         </Button>,
-        <Button type="danger" onClick={() => deleteMenu(item)}>
+        <Button
+          type="danger"
+          onClick={() => showDeleteConfirm(item, setReloadMenuWeb)}
+        >
           <Icon type="delete" />
         </Button>
       ]}
@@ -146,4 +135,32 @@ function MenuItem(props) {
       ></List.Item.Meta>
     </List.Item>
   );
+}
+
+function showDeleteConfirm(menu, setReloadMenuWeb) {
+  const token = getAccessTokenApi();
+
+  const deleteMenu = menu => {
+    const menuId = menu._id;
+
+    updateMenuApi(token, menuId, { deleteLogic: true })
+      .then(response => {
+        notification['success']({ message: response });
+        setReloadMenuWeb(true);
+      })
+      .catch(() => {
+        ['error']({ message: 'Error del servidor' });
+      });
+  };
+
+  ModalAntd.confirm({
+    title: 'Eliminando usuario',
+    content: `Estas seguro que quieres eliminar a ${menu.title}?`,
+    okText: 'Eliminar',
+    okType: 'danger',
+    cancelText: 'Cancelar',
+    onOk() {
+      deleteMenu(menu);
+    }
+  });
 }
