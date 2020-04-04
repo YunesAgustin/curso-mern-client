@@ -1,0 +1,48 @@
+@import '../../../../scss/index.scss';
+
+.courses-list {
+  &__course {
+    margin-bottom: 50px;
+
+    .ant-card {
+      width: 90%;
+      border: 0;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+      -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+      -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+      background-color: transparent;
+    }
+
+    .ant-card-meta-title {
+      color: $fontLight;
+      font-weight: bold;
+    }
+
+    .ant-card-meta-description {
+      color: $primaryColorDark;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 30px;
+      background-color: $primaryColorLight;
+      color: $fontLight;
+      font-weight: bold;
+      font-size: 15px;
+      height: 40px;
+      text-transform: uppercase;
+    }
+
+    &-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      span {
+        color: $fontLight;
+        font-size: 16px;
+      }
+    }
+  }
+}
