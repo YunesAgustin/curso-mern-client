@@ -40,6 +40,12 @@ function MenuSider(props) {
             <span className="navText">Cursos</span>
           </Link>
         </Menu.Item>
+        <Menu.Item key="/admin/blog">
+          <Link to="/admin/blog">
+            <Icon type="message" />
+            <span className="navText">Blog</span>
+          </Link>
+        </Menu.Item>
       </Menu>
     </Sider>
   );
