@@ -3,14 +3,13 @@ import { getPostApi } from '../../../../api/post';
 import { Spin, notification } from 'antd';
 import moment from 'moment';
 import 'moment/locale/es'; // Para usar el moment en español
+import { Helmet } from 'react-helmet';
 
 import './PostInfo.scss';
 
 export default function PostInfo(props) {
   const { url } = props;
   const [post, setpost] = useState({});
-
-  console.log(post);
 
   useEffect(() => {
     getPostApi(url)
@@ -36,16 +35,21 @@ export default function PostInfo(props) {
   }
 
   return (
-    <div className="post-info">
-      <h1 className="post-info__title">{post.title}</h1>
-      <div className="post-info__date">
-        {moment(post.date).local('es').format('LL')}
+    <>
+      <Helmet>
+        <title>{post.title}</title>
+      </Helmet>
+      <div className="post-info">
+        <h1 className="post-info__title">{post.title}</h1>
+        <div className="post-info__date">
+          {moment(post.date).local('es').format('LL')}
+        </div>
+        <div
+          className="post-info__description"
+          dangerouslySetInnerHTML={{ __html: post.description }}
+        />
+        {/* En la bd guardo todo el texto del post como html. Y de esta manera lo puedo mostrar */}
       </div>
-      <div
-        className="post-info__description"
-        dangerouslySetInnerHTML={{ __html: post.description }}
-      />
-      {/* En la bd guardo todo el texto del post como html. Y de esta manera lo puedo mostrar */}
-    </div>
+    </>
   );
 }

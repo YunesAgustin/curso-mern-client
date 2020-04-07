@@ -6,6 +6,7 @@ import queryString from 'query-string';
 import Pagination from '../../../Pagination';
 import { getPostsApi } from '../../../../api/post';
 import 'moment/locale/es';
+import { Helmet } from 'react-helmet';
 
 import './PostListWeb.scss';
 
@@ -36,14 +37,19 @@ export default function PostListWeb(props) {
   }
 
   return (
-    <div className="post-list-web">
-      <h1>Blog</h1>
-      <List
-        dataSource={posts.docs}
-        renderItem={(post) => <Post post={post} />}
-      />
-      <Pagination posts={posts} location={location} history={history} />
-    </div>
+    <>
+      <Helmet>
+        <title>Blog</title>
+      </Helmet>
+      <div className="post-list-web">
+        <h1>Blog</h1>
+        <List
+          dataSource={posts.docs}
+          renderItem={(post) => <Post post={post} />}
+        />
+        <Pagination posts={posts} location={location} history={history} />
+      </div>
+    </>
   );
 }
 
