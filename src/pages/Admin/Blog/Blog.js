@@ -6,6 +6,7 @@ import Modal from '../../../components/Modal';
 import queryString from 'query-string';
 import PostList from '../../../components/Admin/Blog/PostList';
 import Pagination from '../../../components/Pagination';
+import PostForm from '../../../components/Admin/Blog/PostForm';
 
 import './Blog.scss';
 
@@ -13,7 +14,7 @@ function Blog(props) {
   const { location, history } = props;
   const [posts, setPosts] = useState(null);
   const [modalTitle, setModalTitle] = useState('');
-  const [isVisbleModal, setIsVisbleModal] = useState(false);
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [reloadPosts, setReloadPosts] = useState(false);
   const { page = 1 } = queryString.parse(location.search); // Obtiene el page para pasarlo despues a la peticion del back
@@ -33,25 +34,57 @@ function Blog(props) {
     setReloadPosts(false);
   }, [page, reloadPosts]);
 
+  const addPost = () => {
+    setIsVisibleModal(true);
+    setModalTitle('Creando un nuevo post.');
+    setModalContent(
+      <PostForm
+        setIsVisibleModal={setIsVisibleModal}
+        setReloadPosts={setReloadPosts}
+        post={null}
+      />
+    );
+  };
+
+  const editPost = (post) => {
+    setIsVisibleModal(true);
+    setModalTitle('Editando post.');
+    setModalContent(
+      <PostForm
+        setIsVisibleModal={setIsVisibleModal}
+        setReloadPosts={setReloadPosts}
+        post={post}
+      />
+    );
+  };
+
   if (!posts) {
     return null;
   }
   return (
     <div className="blog">
       <div className="blog__add-post">
-        <Button type="primary">Nuevo Post</Button>
+        <Button type="primary" onClick={addPost}>
+          Nuevo Post
+        </Button>
       </div>
 
-      <PostList posts={posts} />
+      <PostList
+        posts={posts}
+        setReloadPosts={setReloadPosts}
+        editPost={editPost}
+      />
 
       <Pagination posts={posts} location={location} history={history} />
 
       <Modal
         title={modalTitle}
-        isVisible={isVisbleModal}
-        setIstVisible={setIsVisbleModal}
+        isVisible={isVisibleModal}
+        setIsVisible={setIsVisibleModal}
         width="75%"
-      />
+      >
+        {modalContent}
+      </Modal>
     </div>
   );
 }

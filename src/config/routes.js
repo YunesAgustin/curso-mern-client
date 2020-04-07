@@ -6,6 +6,7 @@ import LayoutBasic from '../layouts/LayoutBasic';
 import Home from '../pages/Home';
 import Contact from '../pages/Contact';
 import Courses from '../pages/Courses';
+import Blog from '../pages/Blog';
 
 //Admin Pages
 import AdminHome from '../pages/Admin';
@@ -80,6 +81,16 @@ const routes = [
         path: '/contact',
         exact: true,
         component: Contact,
+      },
+      {
+        path: '/blog',
+        exact: true,
+        component: Blog,
+      },
+      {
+        path: '/blog/:url', // Para entrar a cada post especifico, ya que c/u tiene una url distinta
+        exact: true,
+        component: Blog,
       },
       {
         component: Error404,

@@ -24,8 +24,6 @@ function Course(props) {
   const [courseInfo, setCourseInfo] = useState({});
   const [urlCourse, seturlCourse] = useState('');
 
-  console.log(course);
-  console.log(courseInfo);
   useEffect(() => {
     getCoursesDataUdemyApi(course.idCourse)
       .then((response) => {
